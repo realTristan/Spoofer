@@ -1,5 +1,5 @@
 
-# Heroku Ip Spoofer
+# Heroku IP Spoofer
 Heroku ip spoofer by tristan
 // readme not finished yet
 // code not fully optimized yet
