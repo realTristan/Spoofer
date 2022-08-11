@@ -23,7 +23,7 @@ func Test() {
 	var (
 		req        *fasthttp.Request  = fasthttp.AcquireRequest()
 		resp       *fasthttp.Response = fasthttp.AcquireResponse()
-		encodedUrl string             = Base64Encode([]byte("http://httpbin.org/"))
+		encodedUrl string             = Base64Encode([]byte("https://api.ipify.org?format=json"))
 	)
 	// Release the request once no longer needed
 	defer fasthttp.ReleaseRequest(req)
