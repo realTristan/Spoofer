@@ -22,7 +22,6 @@ var RequestClient *fasthttp.Client = &fasthttp.Client{}
 type Request struct {
 	Method  string
 	Url     string
-	Body    []byte
 	Context *fasthttp.RequestCtx
 }
 
@@ -90,7 +89,7 @@ func SendHttpRequest(req *Request) (*fasthttp.Response, error) {
 
 	// Add request body if method is POST or PUT
 	if req.Method == "POST" || req.Method == "PUT" {
-		request.SetBody(req.Body)
+		request.SetBody(req.Context.Request.Body())
 	}
 
 	// Send the http request and set the err variables for return
@@ -135,7 +134,6 @@ func HandleResponse(ctx *fasthttp.RequestCtx) {
 		req *Request = &Request{
 			Url:     url,
 			Method:  method,
-			Body:    ctx.Request.Body(),
 			Context: ctx,
 		}
 
