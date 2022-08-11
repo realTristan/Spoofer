@@ -49,20 +49,20 @@ func Base64Encode(b []byte) string {
 func main() {
 	// Create new fasthttp request and response object
 	var (
-        // Fasthttp request client
-        requestClient *fasthttp.Client = &fasthttp.Client{}
+		// Fasthttp request client
+		requestClient *fasthttp.Client = &fasthttp.Client{}
 
-        // Fasthttp request object
-		req        *fasthttp.Request  = fasthttp.AcquireRequest()
+		// Fasthttp request object
+		req *fasthttp.Request  = fasthttp.AcquireRequest()
 
-        // Fasthttp response object
-		resp       *fasthttp.Response = fasthttp.AcquireResponse()
+		// Fasthttp response object
+		resp *fasthttp.Response = fasthttp.AcquireResponse()
 
-        // Base64 Encoded url
-		encodedUrl string             = Base64Encode([]byte("http://httpbin.org/"))
+		// Base64 Encoded url
+		encodedUrl string = Base64Encode([]byte("https://api.ipify.org?format=json"))
 
-        // Your heroku api url
-        herokuApiUrl string = "Your heroku api url"
+		// Your heroku api url
+		herokuApiUrl string = "Your heroku api url"
 	)
 	// Release the request once no longer needed
 	defer fasthttp.ReleaseRequest(req)
