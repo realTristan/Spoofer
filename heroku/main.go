@@ -23,7 +23,7 @@ type Request struct {
 	Method  string
 	Url     string
 	Body    []byte
-	Headers map[string]string
+	Context *fasthttp.RequestCtx
 }
 
 // The Base64Decode() function will decode a base64 encrypted string
@@ -33,23 +33,6 @@ func Base64Decode(b []byte) string {
 
 	// Return the decoded string
 	return string(decoded)
-}
-
-// The GetHeaderMap() function will get the incoming request headers
-//
-//	then append them to the headers map to be used for the outgoing
-//	request
-func GetHeaderMap(ctx *fasthttp.RequestCtx) *map[string]string {
-	// Define a headers map that will hold the keys and values
-	var headers map[string]string = map[string]string{}
-
-	// Iterate through the request headers and add them to the headers map
-	ctx.Request.Header.VisitAll(func(key []byte, value []byte) {
-		headers[string(key)] = string(value)
-	})
-
-	// Return the headers map for later use
-	return &headers
 }
 
 // The SetRequest() function will create a new fasthttp request object
@@ -66,9 +49,9 @@ func SetRequest(req *Request) *fasthttp.Request {
 	request.Header.SetMethod(req.Method)
 
 	// Set Request Headers
-	for k, v := range req.Headers {
-		request.Header.Set(k, v)
-	}
+	req.Context.Request.Header.VisitAll(func(k []byte, v []byte) {
+		request.Header.Set(string(k), string(v))
+	})
 	return request
 }
 
@@ -153,7 +136,7 @@ func HandleResponse(ctx *fasthttp.RequestCtx) {
 			Url:     url,
 			Method:  method,
 			Body:    ctx.Request.Body(),
-			Headers: *GetHeaderMap(ctx),
+			Context: ctx,
 		}
 
 		// Get the sent request response and error
