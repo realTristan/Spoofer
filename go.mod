@@ -1,4 +1,4 @@
-module heroku-ip-spoofer
+module github.com/realTristan/Heroku_IP_Spoofer
 
 go 1.17
 
