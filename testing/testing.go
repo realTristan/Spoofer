@@ -46,4 +46,4 @@ func Test() {
 
 // Notes:
 // I wasn't properly able to test this because the wifi where I'm currently at
-// is horrendous, if there are any bugs please notify me!
+// is horrendous, if there are any bugs please let me know!

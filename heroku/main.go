@@ -141,7 +141,7 @@ func HandleSentRequest(ctx *fasthttp.RequestCtx, resp *fasthttp.Response, err er
 // whether to skip the body, and the incoming request headers
 //
 // Once the Request struct object has been created, it will send the http request
-// and handle the response using a goroutine and the HandleSentRequest() function
+// and handle the response using the HandleSentRequest() function
 func HandleResponse(ctx *fasthttp.RequestCtx) {
 	var (
 		// Get the request method
@@ -164,7 +164,7 @@ func HandleResponse(ctx *fasthttp.RequestCtx) {
 	)
 
 	// Handle the sent http request
-	go HandleSentRequest(ctx, resp, err)
+	HandleSentRequest(ctx, resp, err)
 }
 
 // Main function
