@@ -1,5 +1,5 @@
 
-# Heroku Ip Spoofer
+# Heroku IP Spoofer
 ![banner (1)](https://user-images.githubusercontent.com/75189508/184053445-5a1aa9d0-f4d9-4462-b9f2-b480e79413f5.png)
 
 Heroku ip spoofer by tristan
