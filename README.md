@@ -47,7 +47,6 @@ func Base64Encode(b []byte) string {
 
 // Function to test the localhost endpoint
 func main() {
-	// Create new fasthttp request and response object
 	var (
 		// Fasthttp request client
 		requestClient *fasthttp.Client = &fasthttp.Client{}
