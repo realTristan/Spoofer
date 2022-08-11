@@ -117,9 +117,9 @@ func SendHttpRequest(req Request) (*fasthttp.Response, error) {
 	return response, err
 }
 
-// The HandleSentRequest() function will set the localhost api
+// The SetApiResponse() function will set the localhost api
 // response headers, body and status code
-func HandleSentRequest(ctx *fasthttp.RequestCtx, resp *fasthttp.Response, err error) {
+func SetApiResponse(ctx *fasthttp.RequestCtx, resp *fasthttp.Response, err error) {
 	// Set the response status code
 	ctx.SetStatusCode(resp.StatusCode())
 
@@ -139,7 +139,7 @@ func HandleSentRequest(ctx *fasthttp.RequestCtx, resp *fasthttp.Response, err er
 // whether to skip the body, and the incoming request headers
 //
 // Once the Request struct object has been created, it will send the http request
-// and handle the response using the HandleSentRequest() function
+// and handle the response using the SetApiResponse() function
 func HandleResponse(ctx *fasthttp.RequestCtx) {
 	var (
 		// Get the request method
@@ -161,7 +161,7 @@ func HandleResponse(ctx *fasthttp.RequestCtx) {
 	)
 
 	// Handle the sent http request
-	HandleSentRequest(ctx, resp, err)
+	SetApiResponse(ctx, resp, err)
 }
 
 // Main function
