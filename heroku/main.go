@@ -28,9 +28,12 @@ type Request struct {
 	SkipBody bool
 }
 
-// Base64 Decode String
+// The Base64Decode() function will decode a base64 encrypted string
 func Base64Decode(b []byte) string {
+	// Decode the string(b []byte)
 	var decoded, _ = base64.StdEncoding.DecodeString(string(b))
+
+	// Return the decoded string
 	return string(decoded)
 }
 
