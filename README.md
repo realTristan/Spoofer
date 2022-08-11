@@ -11,16 +11,12 @@ Login to Heroku CLI
 $ heroku login
 ```
 
-<br>
-
 Commit the api files in /heroku
 ```
 $ git init
 $ git add *
 $ git commit -m "commit"
 ```
-
-<br>
 
 Create Heroku Application
 ```
