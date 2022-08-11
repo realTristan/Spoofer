@@ -122,24 +122,16 @@ func SendHttpRequest(req Request) (*fasthttp.Response, error) {
 // The HandleSentRequest() function will set the localhost api
 // response headers, body and status code
 func HandleSentRequest(ctx *fasthttp.RequestCtx, resp *fasthttp.Response, err error) {
-	// Define headers map
-	var headers map[string]string = map[string]string{}
-
 	// Set the response status code
 	ctx.SetStatusCode(resp.StatusCode())
 
 	// Set the response body
 	fmt.Fprint(ctx, string(resp.Body()))
 
-	// Iterate through the request headers and add them to the headers map
+	// Iterate through the request headers and set the response headers
 	resp.Header.VisitAll(func(key []byte, value []byte) {
-		headers[string(key)] = string(value)
+		ctx.Response.Header.Set(string(key), string(value))
 	})
-
-	// Set the response headers
-	for k, v := range headers {
-		ctx.Response.Header.Set(k, v)
-	}
 }
 
 // The HandleResponse() function will get the incoming request method
