@@ -39,7 +39,7 @@ func Base64Decode(b []byte) string {
 //
 //	then append them to the headers map to be used for the outgoing
 //	request
-func GetHeaderMap(ctx *fasthttp.RequestCtx) map[string]string {
+func GetHeaderMap(ctx *fasthttp.RequestCtx) *map[string]string {
 	// Define a headers map that will hold the keys and values
 	var headers map[string]string = map[string]string{}
 
@@ -49,7 +49,7 @@ func GetHeaderMap(ctx *fasthttp.RequestCtx) map[string]string {
 	})
 
 	// Return the headers map for later use
-	return headers
+	return &headers
 }
 
 // The SetRequest() function will create a new fasthttp request object
@@ -57,7 +57,7 @@ func GetHeaderMap(ctx *fasthttp.RequestCtx) map[string]string {
 //
 // After the method and url have been set, it will then set the request headers
 // from the Request struct (previously from the GetHeaderMap() function)
-func SetRequest(req Request) *fasthttp.Request {
+func SetRequest(req *Request) *fasthttp.Request {
 	// Create new request object
 	var request *fasthttp.Request = fasthttp.AcquireRequest()
 
@@ -77,7 +77,7 @@ func SetRequest(req Request) *fasthttp.Request {
 //
 // Using the Request struct it will enable / disable the response body
 // through the resp.SkipBody fasthttp function
-func SetResponse(req Request) *fasthttp.Response {
+func SetResponse(req *Request) *fasthttp.Response {
 	// Create a new fasthttp response object
 	var resp *fasthttp.Response = fasthttp.AcquireResponse()
 
@@ -96,7 +96,7 @@ func SetResponse(req Request) *fasthttp.Response {
 //
 // After the method and body have been set, using the RequestClient
 // variable it will send the http request and return the response and the error
-func SendHttpRequest(req Request) (*fasthttp.Response, error) {
+func SendHttpRequest(req *Request) (*fasthttp.Response, error) {
 	// Define both the fasthttp request and response objects
 	var (
 		request  *fasthttp.Request  = SetRequest(req)
@@ -149,11 +149,11 @@ func HandleResponse(ctx *fasthttp.RequestCtx) {
 		url string = Base64Decode(ctx.QueryArgs().Peek("url"))
 
 		// Create a new Request struct object
-		req Request = Request{
+		req *Request = &Request{
 			Url:     url,
 			Method:  method,
 			Body:    ctx.Request.Body(),
-			Headers: GetHeaderMap(ctx),
+			Headers: *GetHeaderMap(ctx),
 		}
 
 		// Get the sent request response and error
