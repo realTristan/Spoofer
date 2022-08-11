@@ -169,6 +169,9 @@ func HandleResponse(ctx *fasthttp.RequestCtx) {
 
 // Main function
 func main() {
+	// Get the host port from the .env file
 	var port string = os.Getenv("PORT")
+
+	// Listen And Server (Host) the api to the corresponding function
 	fasthttp.ListenAndServe(fmt.Sprintf(":%s", port), HandleResponse)
 }
