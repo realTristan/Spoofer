@@ -14,18 +14,16 @@ import (
 var RequestClient *fasthttp.Client = &fasthttp.Client{}
 
 // Request Struct
-// The Request structure holds five keys
+// The Request structure holds four keys
 //   - Method: string -> the request method
 //   - Url: string -> the request url
 //   - Body: []byte -> the request body
 //   - Headers: map[string]string -> the request headers
-//   - SkipBody: bool -> whether to skip response body for 'HEAD' request
 type Request struct {
-	Method   string
-	Url      string
-	Body     []byte
-	Headers  map[string]string
-	SkipBody bool
+	Method  string
+	Url     string
+	Body    []byte
+	Headers map[string]string
 }
 
 // The Base64Decode() function will decode a base64 encrypted string
@@ -84,7 +82,7 @@ func SetResponse(req Request) *fasthttp.Response {
 	var resp *fasthttp.Response = fasthttp.AcquireResponse()
 
 	// Whether to skip the response body if 'HEAD' request
-	resp.SkipBody = req.SkipBody
+	resp.SkipBody = req.Method == "HEAD"
 
 	// Return response object
 	return resp
@@ -152,11 +150,10 @@ func HandleResponse(ctx *fasthttp.RequestCtx) {
 
 		// Create a new Request struct object
 		req Request = Request{
-			Url:      url,
-			Method:   method,
-			Body:     ctx.Request.Body(),
-			SkipBody: method == "HEAD",
-			Headers:  GetHeaderMap(ctx),
+			Url:     url,
+			Method:  method,
+			Body:    ctx.Request.Body(),
+			Headers: GetHeaderMap(ctx),
 		}
 
 		// Get the sent request response and error
