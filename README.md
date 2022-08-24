@@ -1,5 +1,5 @@
 
-# Heroku IP Spoofer ![Stars](https://img.shields.io/github/stars/realTristan/Heroku_IP_Spoofer?color=brightgreen) ![Watchers](https://img.shields.io/github/watchers/realTristan/Heroku_IP_Spoofer?label=Watchers)
+# Heroku IP Spoofer ![Stars](https://img.shields.io/github/stars/realTristan/HerokuSpoofer?color=brightgreen) ![Watchers](https://img.shields.io/github/watchers/realTristan/HerokuSpoofer?label=Watchers)
 ![banner (2)](https://user-images.githubusercontent.com/75189508/184139417-4559d58c-965b-4198-82a4-74b5b889ecbb.png)
 
 
