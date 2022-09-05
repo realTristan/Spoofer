@@ -3,7 +3,6 @@ package main
 // Import the required modules
 import (
 	"encoding/base64"
-	"fmt"
 	"os"
 
 	// Fasthttp to host the api
@@ -106,7 +105,7 @@ func SetApiResponse(ctx *fasthttp.RequestCtx, resp *fasthttp.Response, err error
 	ctx.SetStatusCode(resp.StatusCode())
 
 	// Set the response body
-	fmt.Fprint(ctx, string(resp.Body()))
+	ctx.Write(resp.Body())
 
 	// Iterate through the request headers and set the response headers
 	resp.Header.VisitAll(func(key []byte, value []byte) {
@@ -151,5 +150,10 @@ func main() {
 	var port string = os.Getenv("PORT")
 
 	// Listen And Server (Host) the api to the corresponding function
-	fasthttp.ListenAndServe(fmt.Sprintf(":%s", port), HandleResponse)
+	fasthttp.ListenAndServe(":8080"+port, func(ctx *fasthttp.RequestCtx) {
+		switch string(ctx.Path()) {
+		case "/":
+			HandleResponse(ctx)
+		}
+	})
 }
