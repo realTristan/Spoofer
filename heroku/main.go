@@ -150,7 +150,7 @@ func main() {
 	var port string = os.Getenv("PORT")
 
 	// Listen And Server (Host) the api to the corresponding function
-	fasthttp.ListenAndServe(":8080"+port, func(ctx *fasthttp.RequestCtx) {
+	fasthttp.ListenAndServe(":"+port, func(ctx *fasthttp.RequestCtx) {
 		switch string(ctx.Path()) {
 		case "/":
 			HandleResponse(ctx)
