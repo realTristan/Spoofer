@@ -1,4 +1,4 @@
-package testing
+package main
 
 // Import the required modules
 import (
@@ -18,7 +18,7 @@ func Base64Encode(b []byte) string {
 }
 
 // Function to test the localhost endpoint
-func Test() {
+func main() {
 	// Create new fasthttp request and response object
 	var (
 		req        *fasthttp.Request  = fasthttp.AcquireRequest()
@@ -29,7 +29,7 @@ func Test() {
 	defer fasthttp.ReleaseRequest(req)
 
 	// Set the request url to localhost with the encodedurl param
-	req.Header.SetRequestURI(fmt.Sprintf("http://localhost:8000?url=%s", encodedUrl))
+	req.Header.SetRequestURI(fmt.Sprintf("http://localhost:8080?url=%s", encodedUrl))
 
 	// Set the request method (GET)
 	req.Header.SetMethod("GET")
