@@ -1,7 +1,6 @@
 
 # Heroku IP Spoofer ![Stars](https://img.shields.io/github/stars/realTristan/Spoofer?color=brightgreen) ![Watchers](https://img.shields.io/github/watchers/realTristan/Spoofer?label=Watchers)
-![banner (2)](https://user-images.githubusercontent.com/75189508/184139417-4559d58c-965b-4198-82a4-74b5b889ecbb.png)
-
+![banner (1)](https://user-images.githubusercontent.com/75189508/192170623-1d0fe3c7-bd11-4b30-a01d-a5a24a145ec3.png)
 
 Heroku IP Spoofer uses the heroku servers to send an http request through an api. Doing this changes the outgoing http request's ip address.
 <br>
